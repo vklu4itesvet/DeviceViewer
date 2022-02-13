@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceViewer", "DeviceViewer\DeviceViewer.csproj", "{024E6E31-2050-48A6-AA0A-13B5A6A3D133}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "DataModel\DataModel.csproj", "{4400714E-018E-4482-9FAC-6895609CC6C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{024E6E31-2050-48A6-AA0A-13B5A6A3D133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{024E6E31-2050-48A6-AA0A-13B5A6A3D133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{024E6E31-2050-48A6-AA0A-13B5A6A3D133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{024E6E31-2050-48A6-AA0A-13B5A6A3D133}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4400714E-018E-4482-9FAC-6895609CC6C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4400714E-018E-4482-9FAC-6895609CC6C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4400714E-018E-4482-9FAC-6895609CC6C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4400714E-018E-4482-9FAC-6895609CC6C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {544784AD-AC5C-4CB4-8B91-3328F75EC5F9}
+	EndGlobalSection
+EndGlobal

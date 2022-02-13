@@ -3,6 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddCors();
 //builder.Services.AddScoped
 
 var app = builder.Build();
@@ -14,9 +15,11 @@ if (!app.Environment.IsDevelopment())
   app.UseHsts();
 }
 
+app.UseCors(cors => cors.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
 
 
 app.MapControllerRoute(

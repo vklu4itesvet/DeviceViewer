@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
+import { CommonModule } from '@angular/common';
+import { DeviceService } from './device.service';
 import { DeviceUploadComponent } from './upload/device-upload.component';
 
 
@@ -14,10 +15,12 @@ import { DeviceUploadComponent } from './upload/device-upload.component';
   imports: [
     HttpClientModule,
     FormsModule,
+    CommonModule 
   ],
   exports : [
     DeviceUploadComponent
   ],
-  providers: []
+  providers: [
+    DeviceService]
 })
 export class DeviceModule { }

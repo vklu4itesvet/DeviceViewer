@@ -1,5 +1,7 @@
 ﻿using DataModel;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 
 namespace DeviceViewer.Controllers
 {
@@ -12,6 +14,15 @@ namespace DeviceViewer.Controllers
     public DeviceController(ILogger<DeviceController> logger)
     {
       _logger = logger;
+    }
+
+    [HttpPut]
+    [Route("upload")]
+    public async Task<IActionResult> Upload([FromBody] IEnumerable<Device> devices)
+    {
+
+      await Task.Delay(2000);
+      return Ok(true);
     }
 
     [HttpGet]

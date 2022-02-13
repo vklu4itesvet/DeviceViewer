@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row">
+        <div>
+            <input type="file" [accept]="fileTypes" (change)="onFileChange($event)" [disabled]="busy" class="form-control-file"/>
+        </div>
+    </div>
+    <div class="row">
+        <button *ngIf="fileRawStr" [disabled]="!fileRawStr || busy" on-click="onFileUpload()" class="btn btn-primary">
+            Upload
+            <span *ngIf="busy" class="spinner-border spinner-border-sm"></span>
+        </button>
+    </div>
+</div>

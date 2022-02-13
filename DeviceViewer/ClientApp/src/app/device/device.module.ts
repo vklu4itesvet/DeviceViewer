@@ -6,11 +6,13 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DeviceService } from './device.service';
 import { DeviceUploadComponent } from './upload/device-upload.component';
+import { DeviceOverviewComponent } from './overview/device-overview.component';
 
 
 @NgModule({
   declarations: [
     DeviceUploadComponent,
+    DeviceOverviewComponent
   ],
   imports: [
     HttpClientModule,
@@ -18,9 +20,11 @@ import { DeviceUploadComponent } from './upload/device-upload.component';
     CommonModule 
   ],
   exports : [
-    DeviceUploadComponent
+    DeviceUploadComponent,
+    DeviceOverviewComponent
   ],
   providers: [
-    DeviceService]
+    DeviceService
+  ]
 })
 export class DeviceModule { }

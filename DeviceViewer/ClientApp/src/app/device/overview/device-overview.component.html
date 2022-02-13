@@ -1,0 +1,14 @@
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col" *ngFor="let d of devices; let i = index">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{d.name}}</h5>
+        <p class="card-text">{{d.deviceTypeId}}</p>
+        <div class="card-title">
+            <div>Failsafe:</div>
+            <img [src]="d.failsafe ? 'assets/img/ok.svg' : 'assets/img/not.svg'" width="12" height="12" class="card-img-top" alt="...">
+        </div>
+        </div>
+    </div>
+  </div>
+</div>

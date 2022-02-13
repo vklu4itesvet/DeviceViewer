@@ -6,6 +6,7 @@ import { Device } from './device.model';
 @Injectable()
 export class DeviceService {
     private static readonly basePath = 'device';
+    private devices : Device[];
 
     constructor(private http : HttpClient){
     }
@@ -18,9 +19,18 @@ export class DeviceService {
         return this.http.put<boolean>(this.getUrl('upload'), payload, options).toPromise();
     }
 
-    async getList(): Promise<Device[]> {
-        const data = await this.http.get<Device[]>(this.getUrl('overview')).toPromise();
-        return data;
+    async loadList(): Promise<Device[]> {
+        this.devices = await this.http.get<Device[]>(this.getUrl('overview')).toPromise();
+        return this.devices;
+    }
+
+    async delete(d : Device){
+        const options = { params: new HttpParams().append('id', d.entityId) };
+        const commited = await this.http.delete<boolean>(this.getUrl('delete'), options).toPromise<boolean>();
+
+        if(commited){
+            this.devices.splice(this.devices.indexOf(d), 1);
+        }
     }
 
     private getUrl(subPath : string) : string {

@@ -5,7 +5,7 @@ import { Device } from '../device.model';
 @Component({
   selector: 'app-device-overview',
   templateUrl: './device-overview.component.html',
-  styleUrls: ['./device-overview.component.css']
+  styleUrls: ['./device-overview.component.scss']
 })
 export class DeviceOverviewComponent implements OnInit {
   devices = new Array<Device>();
@@ -13,6 +13,10 @@ export class DeviceOverviewComponent implements OnInit {
   constructor(private deviceService : DeviceService) { }
 
   async ngOnInit() {
-      this.devices = await this.deviceService.getList();
+      this.devices = await this.deviceService.loadList();
+  }
+
+  async onDelete(device : Device){
+    this.deviceService.delete(device);
   }
 }

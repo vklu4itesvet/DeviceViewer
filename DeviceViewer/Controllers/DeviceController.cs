@@ -1,4 +1,5 @@
-﻿using DataModel;
+﻿using Data.Interfaces;
+using DataModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -9,10 +10,12 @@ namespace DeviceViewer.Controllers
   [Route("[controller]")]
   public class DeviceController : ControllerBase
   {
+    private readonly IDeviceRepository _deviceRepository;
     private readonly ILogger<DeviceController> _logger;
 
-    public DeviceController(ILogger<DeviceController> logger)
+    public DeviceController(IDeviceRepository deviceRepository, ILogger<DeviceController> logger)
     {
+      _deviceRepository = deviceRepository;
       _logger = logger;
     }
 
@@ -20,7 +23,6 @@ namespace DeviceViewer.Controllers
     [Route("upload")]
     public async Task<IActionResult> Upload([FromBody] IEnumerable<Device> devices)
     {
-
       await Task.Delay(2000);
       return Ok(true);
     }

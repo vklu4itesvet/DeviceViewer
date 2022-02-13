@@ -1,13 +1,16 @@
+using Data.Interfaces;
+using Data.Repository.Mongo;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.Configure<ConnectionConfig>(builder.Configuration.GetSection(nameof(ConnectionConfig)));
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddCors();
-//builder.Services.AddScoped
+builder.Services.AddScoped<IDeviceRepository, DeviceRepository>();
 
 var app = builder.Build();
-
+  
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

@@ -1,9 +1,11 @@
 ﻿using Data.Interfaces;
 using DataModel;
 using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Data.Repository.Mongo
@@ -24,13 +26,18 @@ namespace Data.Repository.Mongo
     protected IMongoDatabase Database;
     protected IMongoCollection<Device> Collection;
 
-    public Task<List<Device>> GetAllAsync() => Collection.AsQueryable().ToListAsync();
+    public Task<Device> GetByIdAsync(Guid id) => Collection.FindAsync(d => d.EntityId == id).Result.SingleAsync();
 
-    public Task InsertAsync(IEnumerable<Device> entities) => Collection.InsertManyAsync(entities);
+    public async Task<IEnumerable<Device>> GetAllAsync() => await Collection.AsQueryable().ToListAsync();
 
-    public async Task<bool> DeleteAsync(Device entity)
+    public Task InsertAsync(IEnumerable<Device> devices)
     {
-      var res = await Collection.DeleteOneAsync(x => x.Id == entity.Id);
+      return Collection.InsertManyAsync(devices);
+    }
+
+    public async Task<bool> DeleteAsync(Guid id)
+    {
+      var res = await Collection.DeleteOneAsync(x => x.EntityId == id);
       return res.IsAcknowledged;
     }
 

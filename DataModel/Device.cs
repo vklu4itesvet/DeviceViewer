@@ -1,9 +1,13 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace DataModel
 {
   public class Device
   {
+    [BsonId]
+    public Guid EntityId { get; set; }
+
     public string Id { get; set; }
 
     public string Name { get; set; }

@@ -1,4 +1,5 @@
 ﻿using DataModel;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,10 +7,12 @@ namespace Data.Interfaces
 {
   public interface IDeviceRepository
   {
-    Task<List<Device>> GetAllAsync();
+    Task<Device> GetByIdAsync(Guid id);
 
-    Task InsertAsync(IEnumerable<Device> entities);
+    Task<IEnumerable<Device>> GetAllAsync();
 
-    Task<bool> DeleteAsync(Device entity);
+    Task InsertAsync(IEnumerable<Device> devices);
+
+    Task<bool> DeleteAsync(Guid id);
   }
 }

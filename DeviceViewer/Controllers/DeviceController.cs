@@ -1,8 +1,6 @@
 ﻿using Data.Interfaces;
 using DataModel;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
-using System.Text.Json.Nodes;
 
 namespace DeviceViewer.Controllers
 {
@@ -19,22 +17,20 @@ namespace DeviceViewer.Controllers
       _logger = logger;
     }
 
-    [HttpPut]
-    [Route("upload")]
-    public async Task<IActionResult> Upload([FromBody] IEnumerable<Device> devices)
-    {
-      await Task.Delay(2000);
-      return Ok(true);
-    }
+    [HttpGet]
+    [Route("[action]")]
+    public async Task<IEnumerable<Device>> Overview() => await _deviceRepository.GetAllAsync();
 
     [HttpGet]
-    public IEnumerable<Device> Get()
-    {
-      return Enumerable.Range(1, 5).Select(index => new Device
-      {
-       
-      })
-      .ToArray();
-    }
+    [Route("[action]")]
+    public async Task<Device> Details(Guid id) => await _deviceRepository.GetByIdAsync(id);
+
+    [HttpPut]
+    [Route("[action]")]
+    public async Task Upload([FromBody] IEnumerable<Device> devices) => await _deviceRepository.InsertAsync(devices);
+
+    [HttpDelete]
+    [Route("[action]")]
+    public async Task<bool> Delete(Guid id) => await _deviceRepository.DeleteAsync(id);
   }
 }

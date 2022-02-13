@@ -13,10 +13,10 @@ export class DeviceOverviewComponent implements OnInit {
   constructor(private deviceService : DeviceService) { }
 
   async ngOnInit() {
-      this.devices = await this.deviceService.loadList();
+      this.devices = await this.deviceService.loadOverview();
   }
 
   async onDelete(device : Device){
-    this.deviceService.delete(device);
+    await this.deviceService.delete(device);
   }
 }

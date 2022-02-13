@@ -1,0 +1,40 @@
+
+<div class="row mt-3">
+  <div class="col-3">
+    <h4>{{details.name}}</h4>
+  </div>
+  <div class="col-8"></div>
+  <div class="col-1">
+    <button type="button" on-click="onBackClick()" class="btn btn-secondary btn-sm">Zurück</button>
+  </div>
+</div>
+<div class="row">
+  <table class="table table-striped table-bordered mt-1">
+    <tbody>
+      <tr>
+        <td>Failsafe</td>
+        <td>{{format(details.failsafe)}}</td>
+      </tr>
+      <tr>
+        <td>Temperatur</td>
+        <td>{{details.tempMin}} - {{details.tempMax}} °C</td>
+      </tr>
+      <tr>
+        <td>Einbauposition</td>
+        <td>{{details.installationPosition}}</td>
+      </tr>
+      <tr>
+        <td>Geeignet für 19'' Schrank</td>
+        <td>{{format(details.insertInto19InchCabinet)}}</td>
+      </tr>
+      <tr>
+        <td>Teminal vorhanden</td>
+        <td>{{format(details.terminalElement)}}</td>
+      </tr>
+      <tr>
+        <td>Erweiterte Umgebungsbedingungen </td>
+        <td>{{format(details.advancedEnvironmentalConditions)}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

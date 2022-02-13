@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Device } from './device.model';
+import { DeviceDetails } from './_models/device-details.model';
 
 @Injectable()
 export class DeviceService {
@@ -9,6 +10,7 @@ export class DeviceService {
     private devices : Device[];
 
     constructor(private http : HttpClient){
+        debugger;
     }
 
     upload(deviceRawDataStr : string): Promise<boolean> {
@@ -19,7 +21,13 @@ export class DeviceService {
         return this.http.put<boolean>(this.getUrl('upload'), payload, options).toPromise();
     }
 
-    async loadList(): Promise<Device[]> {
+    async getDetails(deviceId: string): Promise<DeviceDetails>{
+        const options = { params : new HttpParams().append('id', deviceId) };
+        const details = await this.http.get<DeviceDetails>(this.getUrl('details'), options).toPromise();
+        return details;
+    }
+
+    async loadOverview(): Promise<Device[]> {
         this.devices = await this.http.get<Device[]>(this.getUrl('overview')).toPromise();
         return this.devices;
     }

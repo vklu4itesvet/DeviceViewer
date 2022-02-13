@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 
+import { DeviceDetailsComponent } from './device/details/device-details.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,8 @@ import { HeaderComponent } from './header/header.component';
     FormsModule,
     DeviceModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' }
+      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'details/:id', component: DeviceDetailsComponent },
     ])
   ],
   providers: [],

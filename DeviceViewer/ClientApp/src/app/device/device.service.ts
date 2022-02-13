@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Device } from './device.model';
+import { DeviceOverview } from './_models/device-overview.model';
 import { DeviceDetails } from './_models/device-details.model';
 
 @Injectable()
 export class DeviceService {
     private static readonly basePath = 'device';
-    private devices : Device[];
+    private devices : DeviceOverview[];
 
     constructor(private http : HttpClient){
         debugger;
@@ -27,12 +27,12 @@ export class DeviceService {
         return details;
     }
 
-    async loadOverview(): Promise<Device[]> {
-        this.devices = await this.http.get<Device[]>(this.getUrl('overview')).toPromise();
+    async loadOverview(): Promise<DeviceOverview[]> {
+        this.devices = await this.http.get<DeviceOverview[]>(this.getUrl('overview')).toPromise();
         return this.devices;
     }
 
-    async delete(d : Device){
+    async delete(d : DeviceOverview){
         const options = { params: new HttpParams().append('id', d.entityId) };
         const commited = await this.http.delete<boolean>(this.getUrl('delete'), options).toPromise<boolean>();
 

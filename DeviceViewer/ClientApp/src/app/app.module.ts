@@ -8,7 +8,6 @@ import { DeviceModule } from './device/device.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
-
 import { DeviceDetailsComponent } from './device/details/device-details.component';
 
 @NgModule({

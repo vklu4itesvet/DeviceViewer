@@ -15,5 +15,5 @@ import { Component } from '@angular/core';
   </div>`
 })
 export class HeaderComponent {
-    testDate = new Date(2022, 2, 12);
+  testDate = new Date(2022, 2, 12);
 }

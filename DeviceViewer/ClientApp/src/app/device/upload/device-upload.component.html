@@ -1,13 +1,14 @@
 <div class="container">
   <div class="row">
-    <div>
-      <input type="file" [accept]="fileTypes" (change)="onFileChange($event)" [disabled]="busy" class="form-control-file" />
-    </div>
+    <input type="file" [accept]="fileTypes" (change)="onFileChange($event)" [disabled]="busy" class="form-control-file" />
   </div>
-  <div class="row">
-    <button *ngIf="fileRawStr" [disabled]="!fileRawStr || busy" on-click="onFileUpload()" class="btn btn-primary">
+  <div class="row ms-auto">
+    <button *ngIf="fileRawStr" [disabled]="!fileRawStr || busy" on-click="onFileUpload()" class="btn btn-secondary btn-sm">
       Upload
       <span *ngIf="busy" class="spinner-border spinner-border-sm"></span>
     </button>
+  </div>
+  <div *ngIf="error" class="row ms-auto alert alert-danger" role="alert">
+    Sorry, smth went wrong
   </div>
 </div>

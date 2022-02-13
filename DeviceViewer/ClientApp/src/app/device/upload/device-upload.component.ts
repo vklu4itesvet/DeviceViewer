@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DeviceService } from '../device.service';
 
 @Component({
@@ -9,22 +9,33 @@ export class DeviceUploadComponent {
   @Input() fileTypes = '';
   fileRawStr = '';
   busy = false;
+  error = false;
 
   constructor(private deviceService: DeviceService) { }
 
   onFileChange(event: any): void {
+    this.error = false;
+
     const reader = new FileReader();
-    reader.onload = async _ => {
+    reader.onload = _ => {
       this.busy = true;
       this.fileRawStr = reader.result as string;
-      await this.deviceService.upload(this.fileRawStr);
       this.busy = false;
     };
     reader.readAsText(event.target.files[0]);
   }
 
-  onFileUpload(): void {
+  async onFileUpload() {
     this.busy = true;
+
+    try {
+      await this.deviceService.upload(this.fileRawStr);
+      this.fileRawStr = '';
+    }
+    catch {
+      this.error = true;
+    }
+
     this.busy = false;
   };
 }

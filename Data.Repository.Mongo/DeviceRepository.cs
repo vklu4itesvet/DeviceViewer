@@ -28,7 +28,21 @@ namespace Data.Repository.Mongo
 
     public Task<Device> GetByIdAsync(Guid id) => Collection.FindAsync(d => d.EntityId == id).Result.SingleAsync();
 
-    public async Task<IEnumerable<Device>> GetAllAsync() => await Collection.AsQueryable().ToListAsync();
+    public async IAsyncEnumerable<Device> GetAllAsync()
+    {
+      var filter = Builders<Device>.Filter.Empty;
+      var projection = Builders<Device>.Projection.Include(p => p.EntityId).Include(p => p.Name);
+      var options = new FindOptions<Device, Device> { Projection = projection };
+
+      using (var cursor = await Collection.FindAsync(filter, options))
+      {
+        while (await cursor.MoveNextAsync())
+        {
+          foreach (var device in cursor.Current)
+            yield return device;
+        }
+      }
+    }
 
     public Task InsertAsync(IEnumerable<Device> devices)
     {

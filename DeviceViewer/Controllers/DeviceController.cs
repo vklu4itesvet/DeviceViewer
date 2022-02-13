@@ -19,7 +19,19 @@ namespace DeviceViewer.Controllers
 
     [HttpGet]
     [Route("[action]")]
-    public async Task<IEnumerable<Device>> Overview() => await _deviceRepository.GetAllAsync();
+    public async IAsyncEnumerable<DeviceOverviewModel> Overview()
+    {
+      await foreach(var device in _deviceRepository.GetAllAsync())
+      {
+        yield return new DeviceOverviewModel
+        {
+          EntityId = device.EntityId,
+          Name = device.Name,
+          Failsafe = device.Failsafe,
+          DeviceTypeId = device.DeviceTypeId
+        };
+      }
+    }
 
     [HttpGet]
     [Route("[action]")]
@@ -32,5 +44,16 @@ namespace DeviceViewer.Controllers
     [HttpDelete]
     [Route("[action]")]
     public async Task<bool> Delete(Guid id) => await _deviceRepository.DeleteAsync(id);
+  
+    public class DeviceOverviewModel
+    {
+      public Guid EntityId { get; set; }
+
+      public string Name { get; set; }
+
+      public string DeviceTypeId { get; set; }
+
+      public bool Failsafe { get; set; }
+    }
   }
 }

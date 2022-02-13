@@ -9,7 +9,7 @@ namespace Data.Interfaces
   {
     Task<Device> GetByIdAsync(Guid id);
 
-    Task<IEnumerable<Device>> GetAllAsync();
+    IAsyncEnumerable<Device> GetAllAsync();
 
     Task InsertAsync(IEnumerable<Device> devices);
 

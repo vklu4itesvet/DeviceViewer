@@ -32,3 +32,6 @@
 /Data.Repository.Mongo/obj/project.assets.json
 /Data.Repository.Mongo/obj/project.nuget.cache
 /.vs/DeviceViewer/v17/.suo
+/.vs/DeviceViewer/v17/.futdcache.v1
+/.vs/DeviceViewer/DesignTimeBuild/.dtbcache.v2
+/.vs/DeviceViewer/project-colors.json

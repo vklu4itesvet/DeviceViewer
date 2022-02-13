@@ -31,7 +31,7 @@ namespace Data.Repository.Mongo
     public async IAsyncEnumerable<Device> GetAllAsync()
     {
       var filter = Builders<Device>.Filter.Empty;
-      var projection = Builders<Device>.Projection.Include(p => p.EntityId).Include(p => p.Name);
+      var projection = Builders<Device>.Projection.Include(d => d.EntityId).Include(d => d.Name).Include(d => d.DeviceTypeId).Include(d => d.Failsafe);
       var options = new FindOptions<Device, Device> { Projection = projection };
 
       using (var cursor = await Collection.FindAsync(filter, options))

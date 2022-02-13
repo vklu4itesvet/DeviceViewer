@@ -1,24 +1,24 @@
 <div class="row row-cols-2 row-cols-md-4 g-4">
-    <div class="col" *ngFor="let d of devices; let i = index">
-      <div class="card" [routerLink]="['/details', d.entityId]">
-        <div class="card-body">
+  <div class="col" *ngFor="let d of devices; let i = index">
+    <div class="card">
+      <div class="card-body">
+        <div>
           <div>
-            <div>
-              <h5 class="card-title">{{d.name}}</h5>
-            </div>
-            <div class="image">
-              <img src="assets/img/drop.svg" on-click="onDelete(d)" width="12" height="12" align="right" alt="...">
-            </div>
+            <h5 [routerLink]="['/details', d.entityId]" class="card-title">{{d.name}}</h5>
           </div>
+          <div class="image">
+            <img src="assets/img/drop.svg" on-click="onDelete(d)" width="12" height="12" align="right" alt="...">
+          </div>
+        </div>
         <p class="card-text">{{d.deviceTypeId}}</p>
         <div>
-            <div>
-              <h6>Failsafe:</h6>
-            </div>
-            <div class="image">
-              <img [src]="d.failsafe ? 'assets/img/ok.svg' : 'assets/img/not.svg'" width="12" height="12" align="right" alt="...">
-            </div>
+          <div>
+            <h6>Failsafe:</h6>
           </div>
+          <div class="image">
+            <img [src]="d.failsafe ? 'assets/img/ok.svg' : 'assets/img/not.svg'" width="12" height="12" align="right" alt="...">
+          </div>
+        </div>
       </div>
     </div>
   </div>

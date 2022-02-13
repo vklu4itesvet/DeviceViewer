@@ -10,13 +10,13 @@ import { DeviceOverview } from '../_models/device-overview.model';
 export class DeviceOverviewComponent implements OnInit {
   devices = new Array<DeviceOverview>();
 
-  constructor(private deviceService : DeviceService) { }
+  constructor(private deviceService: DeviceService) { }
 
   async ngOnInit() {
-      this.devices = await this.deviceService.loadOverview();
+    this.deviceService.loadOverview().subscribe(data => this.devices = data);
   }
 
-  async onDelete(device : DeviceOverview){
+  async onDelete(device: DeviceOverview) {
     await this.deviceService.delete(device);
   }
 }
